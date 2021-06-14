@@ -5,7 +5,7 @@ export const MainContent = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 90%;
+  width: 100%;
 `;
 
 export const TopContent = styled.div`
@@ -46,6 +46,8 @@ export const SortLabel = styled.div`
 `;
 
 export const PizzasSection = styled.section`
+  display: flex;
+  flex-wrap: wrap;
   padding: 40px;
 `;
 
@@ -55,8 +57,9 @@ export const PizzaArticle = styled.article`
   -webkit-box-pack: justify;
   justify-content: space-between;
   margin-bottom: 60px;
-  width: 192px;
+  width: 232px;
   margin-right: 37.3333px;
+  margin-left: 35px;
 `;
 
 export const PizzaArticleMainDiv = styled.div`

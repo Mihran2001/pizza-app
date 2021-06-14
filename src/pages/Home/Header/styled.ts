@@ -20,12 +20,6 @@ export const ReactPizzaDiv = styled.div`
   display: flex;
 `;
 
-export const PizzaImg = styled.img`
-  src: "img/pizza-img.png";
-  width: 38px;
-  height: 38px;
-`;
-
 export const SumAndBasketButton = styled.button`
   display: flex;
   align-items: center;
@@ -34,6 +28,7 @@ export const SumAndBasketButton = styled.button`
   border-radius: 30px;
   min-width: 100px;
   background-color: #fe5f1e;
+  border: none;
 `;
 
 export const ButtonDelimiter = styled.div`
