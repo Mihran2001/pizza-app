@@ -7,13 +7,14 @@ import {
   PizzaArticleFooter,
   PizzaPriceDiv,
 } from "./styled";
-import { Radio, Button } from "antd";
+import { Radio, Button, Form } from "antd";
 import "antd/dist/antd.css";
 
 type PropsType = {
   price: string;
   srcSet: string;
   name: string;
+  onSubmit: any; //es petqa uxxvi **************
 };
 
 type PizzaType = {
@@ -21,12 +22,18 @@ type PizzaType = {
   thinOrTraditional: string;
 };
 
-export default function PizzasArticle({ name, price, srcSet }: PropsType) {
+export default function PizzasArticle({
+  name,
+  price,
+  srcSet,
+  onSubmit,
+}: PropsType) {
   const [state, setState] = useState<PizzaType>({
     size: "middle",
     thinOrTraditional: "traditional",
   });
   return (
+    // <Form.Item name={name} >
     <PizzaArticle>
       <PizzaArticleMainDiv>
         <PizzaPicture>
@@ -41,14 +48,41 @@ export default function PizzasArticle({ name, price, srcSet }: PropsType) {
           defaultValue="a"
           style={{ marginTop: 16, display: "flex" }}
         >
-          <Radio.Button value="small">Маленькая</Radio.Button>
-          <Radio.Button value="middle">Средняя</Radio.Button>
-          <Radio.Button value="big">Большая</Radio.Button>
+          <Radio.Button
+            value="small"
+            onClick={() => setState({ ...state, size: "small" })}
+          >
+            Маленькая
+          </Radio.Button>
+          <Radio.Button
+            value="middle"
+            onClick={() => setState({ ...state, size: "middle" })}
+          >
+            Средняя
+          </Radio.Button>
+          <Radio.Button
+            value="big"
+            onClick={() => setState({ ...state, size: "big" })}
+          >
+            Большая
+          </Radio.Button>
         </Radio.Group>
 
         <Radio.Group defaultValue="b" style={{ display: "flex" }}>
-          <Radio.Button value="traditional">Традиционное</Radio.Button>
-          <Radio.Button value="thin">Тонкое</Radio.Button>
+          <Radio.Button
+            value="traditional"
+            onClick={() =>
+              setState({ ...state, thinOrTraditional: "traditional" })
+            }
+          >
+            Традиционное
+          </Radio.Button>
+          <Radio.Button
+            value="thin"
+            onClick={() => setState({ ...state, thinOrTraditional: "thin" })}
+          >
+            Тонкое
+          </Radio.Button>
         </Radio.Group>
       </PizzaArticleMainDiv>
       <PizzaArticleFooter>
@@ -67,10 +101,13 @@ export default function PizzasArticle({ name, price, srcSet }: PropsType) {
             color: "rgb(209, 87, 0)",
             borderRadius: "30px",
           }}
+          htmlType="submit"
+          onClick={() => onSubmit(state)}
         >
           Выбрать
         </Button>
       </PizzaArticleFooter>
     </PizzaArticle>
+    // </Form.Item>
   );
 }
