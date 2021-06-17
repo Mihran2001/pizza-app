@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "antd/dist/antd.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createGlobalStyle } from "styled-components";
-import { store } from "./State/store";
+import { store } from "./Store/store";
 import { Provider } from "react-redux";
 
 const GlobalStyle = createGlobalStyle`

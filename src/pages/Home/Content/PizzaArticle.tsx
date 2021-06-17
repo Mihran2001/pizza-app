@@ -8,18 +8,18 @@ import {
   PizzaPriceDiv,
 } from "./styled";
 import { Radio, Button, Form } from "antd";
-import "antd/dist/antd.css";
+import { pizzaSizes } from "constants/pizza";
+import { ArticlesContent } from "./allArticlesContent";
+import { PizzaSizeType } from "types";
+
+export type SubmittingValuesType = { size: PizzaSizeType };
 
 type PropsType = {
-  price: string;
+  price: number;
   srcSet: string;
   name: string;
-  onSubmit: any; //es petqa uxxvi **************
-};
-
-type PizzaType = {
-  size: string;
-  thinOrTraditional: string;
+  onSubmit: (values: SubmittingValuesType) => void;
+  id: number;
 };
 
 export default function PizzasArticle({
@@ -28,12 +28,9 @@ export default function PizzasArticle({
   srcSet,
   onSubmit,
 }: PropsType) {
-  const [state, setState] = useState<PizzaType>({
-    size: "middle",
-    thinOrTraditional: "traditional",
-  });
+  const [size, setSize] = useState<PizzaSizeType>("middle");
+
   return (
-    // <Form.Item name={name} >
     <PizzaArticle>
       <PizzaArticleMainDiv>
         <PizzaPicture>
@@ -43,46 +40,25 @@ export default function PizzasArticle({
           />
           <img style={{ width: "95%", marginLeft: "5%" }}></img>
         </PizzaPicture>
+
         <PizzaPictureName> {name}</PizzaPictureName>
+
         <Radio.Group
-          defaultValue="a"
+          defaultValue={size}
           style={{ marginTop: 16, display: "flex" }}
+          onChange={(e) => setSize(e.target.value as PizzaSizeType)}
         >
-          <Radio.Button
-            value="small"
-            onClick={() => setState({ ...state, size: "small" })}
-          >
-            Маленькая
-          </Radio.Button>
-          <Radio.Button
-            value="middle"
-            onClick={() => setState({ ...state, size: "middle" })}
-          >
-            Средняя
-          </Radio.Button>
-          <Radio.Button
-            value="big"
-            onClick={() => setState({ ...state, size: "big" })}
-          >
-            Большая
-          </Radio.Button>
+          {pizzaSizes.map((pizzaSize) => (
+            <Radio.Button value={pizzaSize.value} key={pizzaSize.id}>
+              {pizzaSize.title}
+            </Radio.Button>
+          ))}
         </Radio.Group>
 
         <Radio.Group defaultValue="b" style={{ display: "flex" }}>
-          <Radio.Button
-            value="traditional"
-            onClick={() =>
-              setState({ ...state, thinOrTraditional: "traditional" })
-            }
-          >
-            Традиционное
-          </Radio.Button>
-          <Radio.Button
-            value="thin"
-            onClick={() => setState({ ...state, thinOrTraditional: "thin" })}
-          >
-            Тонкое
-          </Radio.Button>
+          <Radio.Button value="traditional">Традиционное</Radio.Button>
+
+          <Radio.Button value="thin">Тонкое</Radio.Button>
         </Radio.Group>
       </PizzaArticleMainDiv>
       <PizzaArticleFooter>
@@ -102,12 +78,11 @@ export default function PizzasArticle({
             borderRadius: "30px",
           }}
           htmlType="submit"
-          onClick={() => onSubmit(state)}
+          onClick={() => onSubmit({ size })}
         >
           Выбрать
         </Button>
       </PizzaArticleFooter>
     </PizzaArticle>
-    // </Form.Item>
   );
 }
