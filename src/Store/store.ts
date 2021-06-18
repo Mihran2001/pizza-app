@@ -17,7 +17,7 @@ const reducer = (state = initialState, action: any) => {
         if (pizza.id === action.id) {
           return {
             ...pizza,
-            price: pizza.price + action.price,
+            count: ++pizza.count,
           };
         }
         return pizza;

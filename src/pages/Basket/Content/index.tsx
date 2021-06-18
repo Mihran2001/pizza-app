@@ -20,6 +20,7 @@ export default function Content() {
           price={pizza.price}
           srcSet={pizza.srcSet}
           pizzaName={pizza.name}
+          count={pizza.count}
         />
       ))}
     </ContentWrapper>

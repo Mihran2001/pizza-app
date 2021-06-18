@@ -5,7 +5,7 @@ import {
   MinusCircleOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 type PropsType = {
   id: number;
@@ -14,6 +14,7 @@ type PropsType = {
   size: string;
   weight: string;
   price: number;
+  count: number;
 };
 
 export default function PizzaWrapper({
@@ -23,8 +24,27 @@ export default function PizzaWrapper({
   size,
   weight,
   price,
+  count,
 }: PropsType) {
+  // const state: {
+  //   id: number;
+  //   count: number;
+  //   price: number;
+  // }[] = [];
+
+  const state: any = useSelector((state: any) => state);
+
   const dispatch = useDispatch();
+  let total = 0;
+  const calculateTotal = (id: number) => {
+    console.log(state);
+    state.map((item: any) => {
+      if (item.id === id) {
+        total = item.count * item.price;
+      }
+    });
+    return total;
+  };
   return (
     <Container>
       <PizzaDescripitonWrapper>
@@ -44,16 +64,18 @@ export default function PizzaWrapper({
         <PizzaCount>
           <MinusCircleOutlined
             style={{ fontSize: "25px" }}
-            onClick={() => dispatch({ type: "REDUCE_COUNT", id, price })}
+            onClick={() => dispatch({ type: "REDUCE_COUNT", id })}
           />
 
           <div>
-            <span style={{ marginLeft: "10px", marginRight: "10px" }}>1</span>
+            <span style={{ marginLeft: "10px", marginRight: "10px" }}>
+              {count}
+            </span>
           </div>
 
           <PlusCircleOutlined
             style={{ fontSize: "25px" }}
-            onClick={() => dispatch({ type: "ADD_COUNT", id, price })}
+            onClick={() => dispatch({ type: "ADD_COUNT", id })}
           />
         </PizzaCount>
         <div
@@ -71,7 +93,7 @@ export default function PizzaWrapper({
                 marginLeft: "30px",
               }}
             >
-              {price}
+              {calculateTotal(id)}
             </span>
           </Sum>
           <DeleteOutlined
