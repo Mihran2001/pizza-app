@@ -5,37 +5,32 @@ import {
   MinusCircleOutlined,
   DeleteOutlined,
 } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
 
 type PropsType = {
+  id: number;
   srcSet: string;
   pizzaName: string;
   size: string;
-  //   thinOrTraditional: string;
+  weight: string;
   price: number;
 };
 
 export default function PizzaWrapper({
+  id,
   srcSet,
   pizzaName,
   size,
-  //   thinOrTraditional,
+  weight,
   price,
 }: PropsType) {
+  const dispatch = useDispatch();
   return (
     <Container>
-      <h1 style={{ fontSize: "36px" }}> Корзина </h1>
       <PizzaDescripitonWrapper>
-        <img
-          style={{ width: "64px", height: "64px" }}
-          //   srcSet="https://dodopizza-a.akamaihd.net/static/Img/Products/64a38569a93246108d8f8b0cefd72fab_366x366.jpeg 366w"
-          srcSet={srcSet}
-        />
-        <div>
-          <h3 style={{ marginTop: "10px", marginLeft: "10px" }}>
-            {/* Колбаски Барбекю
-             */}
-            {pizzaName}
-          </h3>
+        <img style={{ width: "64px", height: "64px" }} srcSet={srcSet} />
+        <div style={{ width: "300px" }}>
+          <h3 style={{ marginTop: "10px", marginLeft: "10px" }}>{pizzaName}</h3>
           <p
             style={{
               marginLeft: "10px",
@@ -43,17 +38,23 @@ export default function PizzaWrapper({
               fontSize: "12px",
             }}
           >
-            {/* Средняя 30 см, тонкое тесто
-             */}
-            {size}
+            {size} {weight}
           </p>
         </div>
         <PizzaCount>
-          <PlusCircleOutlined style={{ fontSize: "25px" }} />
+          <MinusCircleOutlined
+            style={{ fontSize: "25px" }}
+            onClick={() => dispatch({ type: "REDUCE_COUNT", id, price })}
+          />
+
           <div>
             <span style={{ marginLeft: "10px", marginRight: "10px" }}>1</span>
           </div>
-          <MinusCircleOutlined style={{ fontSize: "25px" }} />
+
+          <PlusCircleOutlined
+            style={{ fontSize: "25px" }}
+            onClick={() => dispatch({ type: "ADD_COUNT", id, price })}
+          />
         </PizzaCount>
         <div
           style={{
@@ -70,7 +71,6 @@ export default function PizzaWrapper({
                 marginLeft: "30px",
               }}
             >
-              {/* 565 ₽ */}
               {price}
             </span>
           </Sum>

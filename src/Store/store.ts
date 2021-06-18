@@ -12,6 +12,16 @@ const reducer = (state = initialState, action: any) => {
     case "ADD_PIZZA_TO_THE_BASKET":
       state.push(action.value);
       return state;
+    case "ADD_COUNT":
+      return state.map((pizza) => {
+        if (pizza.id === action.id) {
+          return {
+            ...pizza,
+            price: pizza.price + action.price,
+          };
+        }
+        return pizza;
+      });
     default:
       return state;
   }

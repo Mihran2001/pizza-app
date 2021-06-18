@@ -1,4 +1,5 @@
 export type PizzaSizeType = "small" | "middle" | "big";
+export type PizzaWeightType = "traditional" | "thin";
 
 export type PizzaType = {
   id: number;
@@ -6,4 +7,6 @@ export type PizzaType = {
   srcSet: string;
   name: string;
   size: PizzaSizeType;
+  weight: string;
+  count: number;
 };

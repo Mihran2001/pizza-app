@@ -14,7 +14,6 @@ export const PizzaDescripitonWrapper = styled.article`
   display: flex;
   border-top: 1px solid rgb(226, 226, 233);
   padding-top: 25px;
-  padding-bottom: 25px;
 `;
 
 export const PizzaCount = styled.div`

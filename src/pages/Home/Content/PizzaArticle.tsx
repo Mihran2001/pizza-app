@@ -7,12 +7,14 @@ import {
   PizzaArticleFooter,
   PizzaPriceDiv,
 } from "./styled";
-import { Radio, Button, Form } from "antd";
-import { pizzaSizes } from "constants/pizza";
-import { ArticlesContent } from "./allArticlesContent";
-import { PizzaSizeType } from "types";
+import { Radio, Button } from "antd";
+import { pizzaSizes, pizzaWeight } from "constants/pizza";
+import { PizzaSizeType, PizzaWeightType } from "types";
 
-export type SubmittingValuesType = { size: PizzaSizeType };
+export type SubmittingValuesType = {
+  size: PizzaSizeType;
+  weight: PizzaWeightType;
+};
 
 type PropsType = {
   price: number;
@@ -29,6 +31,7 @@ export default function PizzasArticle({
   onSubmit,
 }: PropsType) {
   const [size, setSize] = useState<PizzaSizeType>("middle");
+  const [weight, setWeight] = useState<PizzaWeightType>("traditional");
 
   return (
     <PizzaArticle>
@@ -55,12 +58,19 @@ export default function PizzasArticle({
           ))}
         </Radio.Group>
 
-        <Radio.Group defaultValue="b" style={{ display: "flex" }}>
-          <Radio.Button value="traditional">Традиционное</Radio.Button>
-
-          <Radio.Button value="thin">Тонкое</Radio.Button>
+        <Radio.Group
+          defaultValue={weight}
+          style={{ display: "flex" }}
+          onChange={(e) => setWeight(e.target.value as PizzaWeightType)}
+        >
+          {pizzaWeight.map((item) => (
+            <Radio.Button value={item.value} key={item.id}>
+              {item.title}
+            </Radio.Button>
+          ))}
         </Radio.Group>
       </PizzaArticleMainDiv>
+
       <PizzaArticleFooter>
         <PizzaPriceDiv>
           <p>
@@ -68,6 +78,7 @@ export default function PizzasArticle({
             От <span> {price} </span>{" "}
           </p>
         </PizzaPriceDiv>
+
         <Button
           style={{
             marginTop: "5px",
@@ -78,7 +89,7 @@ export default function PizzasArticle({
             borderRadius: "30px",
           }}
           htmlType="submit"
-          onClick={() => onSubmit({ size })}
+          onClick={() => onSubmit({ size, weight })}
         >
           Выбрать
         </Button>

@@ -1,4 +1,4 @@
-import { PizzaSizeType } from "../types";
+import { PizzaSizeType, PizzaWeightType } from "../types";
 
 export const pizzaSizes: { id: number; value: PizzaSizeType; title: string }[] =
   [
@@ -18,3 +18,20 @@ export const pizzaSizes: { id: number; value: PizzaSizeType; title: string }[] =
       title: "Большая",
     },
   ];
+
+export const pizzaWeight: {
+  id: number;
+  value: PizzaWeightType;
+  title: string;
+}[] = [
+  {
+    id: 4,
+    value: "thin",
+    title: "Традиционная",
+  },
+  {
+    id: 5,
+    value: "traditional",
+    title: "Тонкая",
+  },
+];
