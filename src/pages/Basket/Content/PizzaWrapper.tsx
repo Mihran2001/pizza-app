@@ -46,6 +46,7 @@ export default function PizzaWrapper({
     return total;
   };
   return (
+    // { count >= 1 ?
     <Container>
       <PizzaDescripitonWrapper>
         <img style={{ width: "64px", height: "64px" }} srcSet={srcSet} />
@@ -108,5 +109,6 @@ export default function PizzaWrapper({
         </div>
       </PizzaDescripitonWrapper>
     </Container>
+    // : <h1>fwafs </h1>  }
   );
 }
