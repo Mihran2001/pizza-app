@@ -6,7 +6,6 @@ export const ArticlesContent = [
     name: "Колбаски Барбекю",
     id: 0,
     count: 1,
-    // total:
   },
   {
     price: 395,
@@ -15,7 +14,6 @@ export const ArticlesContent = [
     name: "Зенит",
     id: 1,
     count: 1,
-    // total:
   },
   {
     price: 495,
@@ -24,7 +22,6 @@ export const ArticlesContent = [
     name: "Додо Микс",
     id: 2,
     count: 1,
-    // total: 0,
   },
   {
     price: 395,
@@ -33,7 +30,6 @@ export const ArticlesContent = [
     name: "Гавайская",
     id: 3,
     count: 1,
-    // total: 0,
   },
   {
     price: 395,
@@ -42,7 +38,6 @@ export const ArticlesContent = [
     name: "Пепперони фреш",
     id: 4,
     count: 1,
-    // total: 0,
   },
   {
     price: 245,
@@ -51,7 +46,6 @@ export const ArticlesContent = [
     name: "Сырная ",
     id: 5,
     count: 1,
-    // total: 0,
   },
   {
     price: 245,
@@ -60,7 +54,6 @@ export const ArticlesContent = [
     name: "Чизбургер-пицца",
     id: 6,
     count: 1,
-    // total: 0,
   },
   {
     price: 395,
@@ -69,7 +62,6 @@ export const ArticlesContent = [
     name: "Чиззи чеддер",
     id: 7,
     count: 1,
-    // total: 0,
   },
   {
     price: 445,
@@ -78,7 +70,6 @@ export const ArticlesContent = [
     name: "Карбонара",
     id: 8,
     count: 1,
-    // total: 0,
   },
   {
     price: 545,
@@ -87,7 +78,6 @@ export const ArticlesContent = [
     name: "Нежный лосось",
     id: 9,
     count: 1,
-    // total: 0,
   },
   {
     price: 445,
@@ -96,7 +86,6 @@ export const ArticlesContent = [
     name: "Песто",
     id: 10,
     count: 1,
-    // total: 0,
   },
   {
     price: 395,
@@ -105,6 +94,5 @@ export const ArticlesContent = [
     name: "Овощи и грибы",
     id: 11,
     count: 1,
-    // total: 0,
   },
 ];

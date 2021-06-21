@@ -35,6 +35,9 @@ const reducer = (state = initialState, action: any) => {
         return pizza;
       });
 
+    case "REMOVE_PIZZA":
+      return action.state;
+
     default:
       return state;
   }

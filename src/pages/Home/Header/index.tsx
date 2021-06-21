@@ -6,8 +6,16 @@ import {
   ReactPizzaDiv,
   BasketButton,
 } from "./styled";
+import { useAppSelector } from "Store/store";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Header() {
+  const length = useAppSelector((state) => state.length);
+
+  // console.log(state.length);
+
+  const dispatch = useDispatch();
+
   const history = useHistory();
   return (
     <HeaderDiv>
@@ -32,7 +40,7 @@ export default function Header() {
               marginRight: "15px",
             }}
           />
-          <span style={{ color: "white" }}> 0 </span>
+          <span style={{ color: "white" }}> {length} </span>
         </BasketButton>
       </HeaderContainer>
     </HeaderDiv>
