@@ -17,7 +17,7 @@ export type SubmittingValuesType = {
 };
 
 type PropsType = {
-  price: number;
+  smallPrice: number;
   srcSet: string;
   name: string;
   onSubmit: (values: SubmittingValuesType) => void;
@@ -26,7 +26,9 @@ type PropsType = {
 
 export default function PizzasArticle({
   name,
-  price,
+  smallPrice,
+  // middlePrice,
+  // bigPrice,
   srcSet,
   onSubmit,
 }: PropsType) {
@@ -75,7 +77,7 @@ export default function PizzasArticle({
         <PizzaPriceDiv>
           <p>
             {" "}
-            От <span> {price} </span>{" "}
+            От <span> {smallPrice} </span>{" "}
           </p>
         </PizzaPriceDiv>
 

@@ -54,7 +54,9 @@ export default function Content() {
               <PizzasArticle
                 id={item.id}
                 key={item.id}
-                price={item.price}
+                smallPrice={item.smallPrice}
+                // middlePrice={item.middlePrice}
+                // bigPrice={item.bigPrice}
                 srcSet={item.srcSet}
                 name={item.name}
                 onSubmit={(values: SubmittingValuesType) =>
