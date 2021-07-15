@@ -6,7 +6,6 @@ import { useAppSelector } from "Store/store";
 
 export default function Content() {
   const state = useAppSelector((state) => state);
-  console.log(state);
 
   return (
     <ContentWrapper>

@@ -38,7 +38,7 @@ export default function PizzaWrapper({
   const dispatch = useDispatch();
   let total = 0;
   const calculateTotal = (id: number) => {
-    console.log(state);
+    // console.log(state);
     state.map((item: any) => {
       if (item.id === id) {
         total = item.count * item.price;
