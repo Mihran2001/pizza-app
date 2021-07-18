@@ -6,7 +6,7 @@ import { isExists } from "./isExists";
 const initialState: PizzaInitialStateType[] = [];
 
 const reducer = (state = initialState, action: any) => {
-  // piti poxvi type *****
+  // The type must be changed *****
   console.log("This is state ", state);
 
   switch (action.type) {
