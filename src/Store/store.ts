@@ -1,7 +1,6 @@
 import { createStore } from "redux";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { PizzaInitialStateType } from "types";
-import { isExists } from "./isExists";
 
 const initialState: PizzaInitialStateType[] = [];
 
@@ -11,10 +10,7 @@ const reducer = (state = initialState, action: any) => {
 
   switch (action.type) {
     case "ADD_PIZZA_TO_THE_BASKET":
-      if (
-        action.value.size === "small" &&
-        !isExists(action.value.id, action.value.size, state)
-      ) {
+      if (action.value.size === "small") {
         state.push({
           id: action.value.id,
           price: action.value.smallPrice,
@@ -25,13 +21,8 @@ const reducer = (state = initialState, action: any) => {
           count: action.value.count,
         });
 
-        // state[state.length - 1].price = action.value.smallPrice;
         return state;
-      } else if (
-        action.value.size === "middle" &&
-        !isExists(action.value.id, action.value.size, state)
-      ) {
-        // state[state.length - 1].price = action.value.middlePrice;
+      } else if (action.value.size === "middle") {
         state.push({
           id: action.value.id + 100,
           price: action.value.middlePrice,
@@ -42,12 +33,7 @@ const reducer = (state = initialState, action: any) => {
           count: action.value.count,
         });
         return state;
-      }
-      // state[state.length - 1].price = action.value.bigPrice;
-      else if (
-        action.value.size === "big" &&
-        !isExists(action.value.id, action.value.size, state)
-      ) {
+      } else if (action.value.size === "big") {
         state.push({
           id: action.value.id + 101,
           price: action.value.bigPrice,

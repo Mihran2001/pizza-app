@@ -18,12 +18,26 @@ import {
   PizzasSection,
 } from "./styled";
 import { pizzaCategories } from "./pizzaCategories";
+import { isExists } from "./isExists";
+import { useAppSelector } from "Store/store";
 
 export default function Content() {
   const dispatch = useDispatch();
+  const state = useAppSelector((state) => state);
 
   const handleSubmit = (values: PizzaType) => {
-    dispatch({ type: "ADD_PIZZA_TO_THE_BASKET", value: values });
+    let id = values.id;
+
+    if (values.size === "middle") {
+      id += 100;
+    } else if (values.size === "big") {
+      id += 101;
+    }
+
+    if (!isExists(id, values.size, state)) {
+      // console.log(`id: ${id}`, `size: ${values.size}`);
+      dispatch({ type: "ADD_PIZZA_TO_THE_BASKET", value: values });
+    }
   };
 
   return (
