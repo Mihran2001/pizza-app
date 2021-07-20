@@ -27,8 +27,6 @@ type PropsType = {
 export default function PizzasArticle({
   name,
   smallPrice,
-  // middlePrice,
-  // bigPrice,
   srcSet,
   onSubmit,
 }: PropsType) {
@@ -76,8 +74,7 @@ export default function PizzasArticle({
       <PizzaArticleFooter>
         <PizzaPriceDiv>
           <p>
-            {" "}
-            От <span> {smallPrice} </span>{" "}
+            От <span> {smallPrice} </span>
           </p>
         </PizzaPriceDiv>
 

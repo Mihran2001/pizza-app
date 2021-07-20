@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { PizzaType } from "types";
 import { v4 as uuidv4 } from "uuid";
 import { CaretUpOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PizzasArticle, { SubmittingValuesType } from "./PizzaArticle";
 import { ArticlesContent } from "./allArticlesContent";
 import {
@@ -24,6 +24,7 @@ import { useAppSelector } from "Store/store";
 export default function Content() {
   const dispatch = useDispatch();
   const state = useAppSelector((state) => state);
+  const [category, setCategory] = useState("Все");
 
   const handleSubmit = (values: PizzaType) => {
     let id = values.id;
@@ -35,10 +36,13 @@ export default function Content() {
     }
 
     if (!isExists(id, values.size, state)) {
-      // console.log(`id: ${id}`, `size: ${values.size}`);
       dispatch({ type: "ADD_PIZZA_TO_THE_BASKET", value: values });
     }
   };
+
+  const handleClick = useCallback((item) => {
+    setCategory(item);
+  }, []);
 
   return (
     <MainContent>
@@ -47,7 +51,14 @@ export default function Content() {
           <Categories>
             <CategoriesUl>
               {pizzaCategories.map((item) => {
-                return <CategoriesLi key={uuidv4()}> {item} </CategoriesLi>;
+                return (
+                  <CategoriesLi
+                    key={uuidv4()}
+                    onClick={() => handleClick(item)}
+                  >
+                    {item}
+                  </CategoriesLi>
+                );
               })}
             </CategoriesUl>
           </Categories>
@@ -63,22 +74,37 @@ export default function Content() {
         <h2 style={{ margin: "35px" }}>Все пиццы</h2>
 
         <PizzasSection>
-          {ArticlesContent.map((item) => {
-            return (
-              <PizzasArticle
-                id={item.id}
-                key={item.id}
-                smallPrice={item.smallPrice}
-                // middlePrice={item.middlePrice}
-                // bigPrice={item.bigPrice}
-                srcSet={item.srcSet}
-                name={item.name}
-                onSubmit={(values: SubmittingValuesType) =>
-                  handleSubmit({ ...values, ...item })
+          {category === "Все"
+            ? ArticlesContent.map((item) => {
+                return (
+                  <PizzasArticle
+                    id={item.id}
+                    key={item.id}
+                    smallPrice={item.smallPrice}
+                    srcSet={item.srcSet}
+                    name={item.name}
+                    onSubmit={(values: SubmittingValuesType) =>
+                      handleSubmit({ ...values, ...item })
+                    }
+                  />
+                );
+              })
+            : ArticlesContent.filter((item) => item.type === category).map(
+                (item) => {
+                  return (
+                    <PizzasArticle
+                      id={item.id}
+                      key={item.id}
+                      smallPrice={item.smallPrice}
+                      srcSet={item.srcSet}
+                      name={item.name}
+                      onSubmit={(values: SubmittingValuesType) =>
+                        handleSubmit({ ...values, ...item })
+                      }
+                    />
+                  );
                 }
-              />
-            );
-          })}
+              )}
         </PizzasSection>
       </Container>
     </MainContent>
