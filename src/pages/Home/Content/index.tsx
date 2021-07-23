@@ -20,6 +20,8 @@ import {
 import { pizzaCategories } from "./pizzaCategories";
 import { isExists } from "./isExists";
 import { useAppSelector } from "Store/store";
+import DropDownSorting from "./DropDownSorting";
+import { actionTypes } from "../../../Store/actionTypes";
 
 export default function Content() {
   const dispatch = useDispatch();
@@ -36,7 +38,7 @@ export default function Content() {
     }
 
     if (!isExists(id, values.size, state)) {
-      dispatch({ type: "ADD_PIZZA_TO_THE_BASKET", value: values });
+      dispatch({ type: actionTypes.ADD_PIZZA_TO_THE_BASKET, value: values });
     }
   };
 
@@ -63,11 +65,12 @@ export default function Content() {
             </CategoriesUl>
           </Categories>
           <Sort>
-            <SortLabel>
+            {/* <SortLabel>
               <CaretUpOutlined />
               <b> Сортировка по: </b>
               <p style={{ marginTop: "13px" }}> алфавиту </p>
-            </SortLabel>
+            </SortLabel> */}
+            <DropDownSorting />
           </Sort>
         </TopContent>
 

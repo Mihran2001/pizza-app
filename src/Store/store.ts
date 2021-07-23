@@ -1,16 +1,18 @@
 import { createStore } from "redux";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { PizzaInitialStateType } from "types";
+import sortedPizzas from "pages/Home/Content/sortPizzas";
+import { actionTypes } from "./actionTypes";
 
 const initialState: PizzaInitialStateType[] = [];
 
 const reducer = (state = initialState, action: any) => {
-  // The type must be changed *****
+  //TODO
   console.log("This is state ", state);
 
   switch (action.type) {
-    case "ADD_PIZZA_TO_THE_BASKET":
-      if (action.value.size === "small") {
+    case actionTypes.ADD_PIZZA_TO_THE_BASKET:
+      if (action.value.size === actionTypes.small) {
         state.push({
           id: action.value.id,
           price: action.value.smallPrice,
@@ -22,7 +24,7 @@ const reducer = (state = initialState, action: any) => {
         });
 
         return state;
-      } else if (action.value.size === "middle") {
+      } else if (action.value.size === actionTypes.middle) {
         state.push({
           id: action.value.id + 100,
           price: action.value.middlePrice,
@@ -33,7 +35,7 @@ const reducer = (state = initialState, action: any) => {
           count: action.value.count,
         });
         return state;
-      } else if (action.value.size === "big") {
+      } else if (action.value.size === actionTypes.big) {
         state.push({
           id: action.value.id + 101,
           price: action.value.bigPrice,
@@ -46,7 +48,7 @@ const reducer = (state = initialState, action: any) => {
         return state;
       }
       return state;
-    case "ADD_COUNT":
+    case actionTypes.ADD_COUNT:
       return state.map((pizza) => {
         if (pizza.id === action.id) {
           return {
@@ -57,7 +59,7 @@ const reducer = (state = initialState, action: any) => {
         return pizza;
       });
 
-    case "REDUCE_COUNT":
+    case actionTypes.REDUCE_COUNT:
       return state.map((pizza) => {
         if (pizza.id === action.id) {
           return {
@@ -68,9 +70,10 @@ const reducer = (state = initialState, action: any) => {
         return pizza;
       });
 
-    case "REMOVE_PIZZA":
+    case actionTypes.REMOVE_PIZZA:
       return action.state;
-
+    case actionTypes.PIZZAS_SORT_ALPHABET:
+      return sortedPizzas(state);
     default:
       return state;
   }
